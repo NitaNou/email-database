@@ -1,0 +1,10 @@
+package com.willywonka.dao;
+
+import com.willywonka.model.ProspectEmployee;
+
+import java.util.List;
+
+public interface ProspectEmployeeDao {
+
+    List<ProspectEmployee> getAllProspectEmployees();
+}
