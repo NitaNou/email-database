@@ -4,5 +4,5 @@ WHERE datname = 'email_db';
 
 DROP DATABASE email_db;
 
-DROP USER final_capstone_owner;
-DROP USER final_capstone_appuser;
+DROP USER email_database_owner;
+DROP USER email_database_appuser;

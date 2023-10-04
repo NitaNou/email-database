@@ -1,11 +1,11 @@
 package com.willywonka.model;
 
-public class ProspectEmployee {
+public class OfficialEmployee {
 
     private int id;
     private String firstName;
     private String lastName;
-    private String prospect_dept;
+    private String dept;
 
     public int getId() {
         return id;
@@ -31,21 +31,21 @@ public class ProspectEmployee {
         this.lastName = lastName;
     }
 
-    public String getProspect_dept() {
-        return prospect_dept;
+    public String getDept() {
+        return dept;
     }
 
-    public void setProspect_dept(String prospect_dept) {
-        this.prospect_dept = prospect_dept;
+    public void setDept(String dept) {
+        this.dept = dept;
     }
 
     @Override
     public String toString() {
-        return "ProspectEmployee{" +
+        return "OfficialEmployee{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", dept='" + prospect_dept + '\'' +
+                ", dept='" + dept + '\'' +
                 '}';
     }
 }

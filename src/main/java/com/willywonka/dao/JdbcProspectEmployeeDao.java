@@ -5,10 +5,12 @@ import com.willywonka.model.ProspectEmployee;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcProspectEmployeeDao implements ProspectEmployeeDao{
 
     private JdbcTemplate jdbcTemplate;
@@ -20,7 +22,7 @@ public class JdbcProspectEmployeeDao implements ProspectEmployeeDao{
     @Override
     public List<ProspectEmployee> getAllProspectEmployees() {
         List<ProspectEmployee> prospectEmployees = new ArrayList<>();
-        String sql = "SELECT prospect_employee_id, first_name, last_name, prospect_department_id FROM prospect_employee";
+        String sql = "SELECT id, first_name, last_name, prospect_dept_id FROM prospect_employee";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -35,10 +37,10 @@ public class JdbcProspectEmployeeDao implements ProspectEmployeeDao{
 
     private ProspectEmployee mapRowToUser(SqlRowSet results) {
         ProspectEmployee prospectEmployee = new ProspectEmployee();
-        prospectEmployee.setId(results.getInt("prospect_employee_id"));
-        prospectEmployee.setFirstName(results.getString("prospect_first_name"));
-        prospectEmployee.setLastName(results.getString("prospect_last_name"));
-        prospectEmployee.setDept("prospect_employee_dept");
+        prospectEmployee.setId(results.getInt("id"));
+        prospectEmployee.setFirstName(results.getString("first_name"));
+        prospectEmployee.setLastName(results.getString("last_name"));
+        prospectEmployee.setProspect_dept("prospect_dept_id");
         return prospectEmployee;
     }
 
