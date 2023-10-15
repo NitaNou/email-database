@@ -5,7 +5,17 @@ public class ProspectEmployee {
     private int id;
     private String firstName;
     private String lastName;
-    private String prospect_dept;
+    private int prospect_dept;
+
+
+    public ProspectEmployee(){}
+
+    public ProspectEmployee(int id, String firstName, String lastName, int prospect_dept){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.prospect_dept = prospect_dept;
+    }
 
     public int getId() {
         return id;
@@ -31,11 +41,11 @@ public class ProspectEmployee {
         this.lastName = lastName;
     }
 
-    public String getProspect_dept() {
+    public int getProspect_dept() {
         return prospect_dept;
     }
 
-    public void setProspect_dept(String prospect_dept) {
+    public void setProspect_dept(int prospect_dept) {
         this.prospect_dept = prospect_dept;
     }
 

@@ -35,12 +35,38 @@ public class JdbcProspectEmployeeDao implements ProspectEmployeeDao{
         return prospectEmployees;
     }
 
+    @Override
+    public ProspectEmployee getProspectEmployeeById(int prospectId) {
+        ProspectEmployee prospectEmployee = null;
+        String sql = "SELECT id, first_name, last_name, prospect_dept_id FROM prospect_employee WHERE id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, prospectId);
+        if (result.next()) {
+            prospectEmployee = mapRowToUser(result);
+        }
+        return prospectEmployee;
+    }
+
+    @Override
+    public ProspectEmployee addProspectEmployee(ProspectEmployee prospectEmployee) {
+        ProspectEmployee prospectEmp = null;
+        String sql = "INSERT into prospect_employee (id, first_name, last_name, prospect_dept_id) VALUES (default, ?, ?, ?)";
+        jdbcTemplate.update(sql, prospectEmployee.getFirstName(), prospectEmployee.getLastName(), prospectEmployee.getProspect_dept());
+        return prospectEmp;
+    }
+
+    @Override
+    public void deleteProspectEmployee(int prospectId) {
+        String sql = "DELETE FROM prospect_employee WHERE id = ?";
+        jdbcTemplate.update(sql, prospectId);
+    }
+
+
     private ProspectEmployee mapRowToUser(SqlRowSet results) {
         ProspectEmployee prospectEmployee = new ProspectEmployee();
         prospectEmployee.setId(results.getInt("id"));
         prospectEmployee.setFirstName(results.getString("first_name"));
         prospectEmployee.setLastName(results.getString("last_name"));
-        prospectEmployee.setProspect_dept("prospect_dept_id");
+        prospectEmployee.setProspect_dept(results.getInt("prospect_dept_id"));
         return prospectEmployee;
     }
 
